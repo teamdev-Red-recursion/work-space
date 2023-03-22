@@ -34,8 +34,10 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">comming soon</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex form" method="get" target="_blank" action="https://www.google.com/search">
+          <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="as_q" value="">
+          <input type="hidden" name="hl" value="ja">
+          <input type="hidden" name="as_sitesearch" value="https://into-the-program.com/">
           <button class="btn btn-outline-secondary " type="submit">Search</button>
         </form>
       </div>
