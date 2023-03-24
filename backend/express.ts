@@ -24,7 +24,7 @@ app.get("/article", (async () => {
     } finally {
         conn.release()
     }
-})())
+}))
 
 //POST(insert) a article
 app.post("/articles", (req, res) => {

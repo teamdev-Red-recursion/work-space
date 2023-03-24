@@ -87,7 +87,7 @@ app.get("/article", (function () { return __awaiter(_this, void 0, void 0, funct
             case 6: return [2 /*return*/];
         }
     });
-}); })());
+}); }));
 //POST(insert) a article
 app.post("/articles", function (req, res) {
     var query = "INSERT INTO test (id, name, zip, address, birth, sex) VALUES (1, 'yuya', '111-1111', 'tokyo', '2023-03-25', true)";
