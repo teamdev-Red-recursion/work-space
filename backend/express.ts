@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.EXPRESS_PORT || 3000
 
 //GET(select) all articles
-app.get("/articles", async function(req, res) {
+app.get("/articles", async function(req, res, next) {
     const query = "SELECT * FROM test"
     const connect = await client.connect()
     const results = await connect.query(query);

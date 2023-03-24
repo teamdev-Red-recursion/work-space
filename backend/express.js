@@ -39,7 +39,7 @@ var client = require('./pg_pool');
 var app = express();
 var port = process.env.EXPRESS_PORT || 3000;
 //GET(select) all articles
-app.get("/articles", function (req, res) {
+app.get("/articles", function (req, res, next) {
     return __awaiter(this, void 0, void 0, function () {
         var query, connect, results;
         return __generator(this, function (_a) {
