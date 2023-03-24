@@ -14,6 +14,18 @@ app.get("/articles", async function(req, res, next) {
     })
 })
 
+app.get("/article", (async () => {
+    const conn = await client.connect()
+    try {
+        const res = await conn.query('SELECT * FROM test')
+        console.log(res.rows[0])
+    } catch (err) {
+        console.log(err.stack)
+    } finally {
+        conn.release()
+    }
+})())
+
 //POST(insert) a article
 app.post("/articles", (req, res) => {
     const query = "INSERT INTO test (id, name, zip, address, birth, sex) VALUES (1, 'yuya', '111-1111', 'tokyo', '2023-03-25', true)"
