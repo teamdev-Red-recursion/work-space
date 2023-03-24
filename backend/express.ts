@@ -1,7 +1,6 @@
 const express = require('express')
 const client = require('./pg_pool');
-
-const app = express()
+const app = express.Router();
 const port = process.env.EXPRESS_PORT || 3000
 
 //GET(select) all articles
