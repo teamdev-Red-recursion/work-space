@@ -21,6 +21,6 @@ app.get("/articles", (req, res) => {
 
 
 
-app.listen(port, () => {
+app.listen(port, "18.176.52.15", () => {
   console.log(`listening on *:${port}`);
 })

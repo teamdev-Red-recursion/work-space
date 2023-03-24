@@ -15,6 +15,6 @@ app.get("/articles", function (req, res) {
         .catch(function (e) { return console.log(e); })
         .finally(function () { return client.end(); });
 });
-app.listen(port, function () {
+app.listen(port, "18.176.52.15", function () {
     console.log("listening on *:".concat(port));
 });
