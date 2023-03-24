@@ -41,22 +41,21 @@ var port = process.env.EXPRESS_PORT || 3000;
 //GET(select) all articles
 app.get("/articles", function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var query, connect;
+        var query, connect, results;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     query = "SELECT * FROM test";
-                    return [4 /*yield*/, pool.connect()
-                            .then(function () { return pool.query(query); })
-                            .then(function (results) {
-                            res.send({
-                                articles: results.rows
-                            });
-                        })
-                            .catch(function (e) { return console.log(e); })
-                            .finally(function () { return connect.release(); })];
+                    return [4 /*yield*/, pool.connect()];
                 case 1:
                     connect = _a.sent();
+                    return [4 /*yield*/, connect.query(query)];
+                case 2:
+                    results = _a.sent();
+                    connect.release();
+                    res.send({
+                        articles: results.rows
+                    });
                     return [2 /*return*/];
             }
         });
