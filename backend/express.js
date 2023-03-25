@@ -9,14 +9,12 @@ app.get("/articles", async function(req, res) {
     const selectClient = await pool.connect()
     try {
         const res = await selectClient.query(selectQuery)
+        res.send({ articles: res.rows })
     } catch (err) {
         console.log(err.stack)
     } finally {
         selectClient.release()
     }
-    res.send({
-        articles: res.rows
-    })
 })
 
 //POST(insert) a article
@@ -25,12 +23,12 @@ app.post("/articles", async function(req, res) {
     const insertClient = await pool.connect()
     try {
         const res = await insertClient.query(insertQuery)
+        res.send("ok!")
     } catch (err) {
         console.log(err.stack)
     } finally {
         insertClient.release()
     }
-    res.send("ok!")
 })
 
 //PUT(update) a article
@@ -42,12 +40,12 @@ app.put("/articles:id", async function(req, res) {
     const updateClient = await pool.connect()
     try {
         const res = await updateClient.query(updateQuery)
+        res.send("ok!")
     } catch (err) {
         console.log(err.stack)
     } finally {
         updateClient.release()
     }
-    res.send("ok!")
 })
 
 //DELETE(delete) a article
@@ -56,12 +54,12 @@ app.delete("/articles:id", async function(req, res) {
     const deleteClient = await pool.connect()
     try {
         const res = await deleteClient.query(deleteQuery)
+        res.send("ok!")
     } catch (err) {
         console.log(err.stack)
     } finally {
         deleteClient.release()
     }
-    res.send("ok!")
 })
 
 app.listen(port, () => {
