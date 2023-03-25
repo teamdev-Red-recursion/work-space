@@ -4,27 +4,17 @@ const app = express();
 const port = process.env.EXPRESS_PORT || 3000
 
 //GET(select) all articles
-app.get("/articles", async function(req, res, next) {
+app.get("/articles", async function(req, res) {
     const query = "SELECT * FROM test"
-    const connect = await client.connect()
-    const results = await connect.query(query);
-    connect.release();
-    res.send({
-        articles: results.rows
+    await client.connect()
+    .then(() => client.query(query))
+    .then(results => {
+        res.send({
+            articles: results.rows
+        })
     })
+    await client.end()
 })
-
-app.get("/article", (async () => {
-    const conn = await client.connect()
-    try {
-        const res = await conn.query('SELECT * FROM test')
-        console.log(res.rows[0])
-    } catch (err) {
-        console.log(err.stack)
-    } finally {
-        conn.release()
-    }
-}))
 
 //POST(insert) a article
 app.post("/articles", (req, res) => {

@@ -34,60 +34,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
 var express = require('express');
 var client = require('./pg_pool');
 var app = express();
 var port = process.env.EXPRESS_PORT || 3000;
 //GET(select) all articles
-app.get("/articles", function (req, res, next) {
+app.get("/articles", function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var query, connect, results;
+        var query;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     query = "SELECT * FROM test";
-                    return [4 /*yield*/, client.connect()];
+                    return [4 /*yield*/, client.connect()
+                            .then(function () { return client.query(query); })
+                            .then(function (results) {
+                            res.send({
+                                articles: results.rows
+                            });
+                        })];
                 case 1:
-                    connect = _a.sent();
-                    return [4 /*yield*/, connect.query(query)];
+                    _a.sent();
+                    return [4 /*yield*/, client.end()];
                 case 2:
-                    results = _a.sent();
-                    connect.release();
-                    res.send({
-                        articles: results.rows
-                    });
+                    _a.sent();
                     return [2 /*return*/];
             }
         });
     });
 });
-app.get("/article", (function () { return __awaiter(_this, void 0, void 0, function () {
-    var conn, res, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, client.connect()];
-            case 1:
-                conn = _a.sent();
-                _a.label = 2;
-            case 2:
-                _a.trys.push([2, 4, 5, 6]);
-                return [4 /*yield*/, conn.query('SELECT * FROM test')];
-            case 3:
-                res = _a.sent();
-                console.log(res.rows[0]);
-                return [3 /*break*/, 6];
-            case 4:
-                err_1 = _a.sent();
-                console.log(err_1.stack);
-                return [3 /*break*/, 6];
-            case 5:
-                conn.release();
-                return [7 /*endfinally*/];
-            case 6: return [2 /*return*/];
-        }
-    });
-}); }));
 //POST(insert) a article
 app.post("/articles", function (req, res) {
     var query = "INSERT INTO test (id, name, zip, address, birth, sex) VALUES (1, 'yuya', '111-1111', 'tokyo', '2023-03-25', true)";
