@@ -1,7 +1,6 @@
 const express = require('express')
 const pool = require('./pg_pool');
-//const app = express();
-const app = express.Router();
+const app = express();
 const port = process.env.EXPRESS_PORT || 3000
 
 //GET(select) all articles
@@ -35,7 +34,7 @@ app.post("/articles", async function(req, res) {
 })
 
 //PUT(update) a article
-app.put("/articles:id", async function(req, res) {
+app.put("/articles", async function(req, res) {
     //TODO bodyで具体的な修正対象を送る→処理み実装
     console.log(req.body);
 
@@ -52,7 +51,7 @@ app.put("/articles:id", async function(req, res) {
 })
 
 //DELETE(delete) a article
-app.delete("/articles:id", async function(req, res) {
+app.delete("/articles", async function(req, res) {
     const deleteQuery = "DELETE from test where id = 1"
     const deleteClient = await pool.connect()
     try {
