@@ -99,3 +99,4 @@ app.delete("/articles:id", function (req, res) {
 app.listen(port, function () {
     console.log("listening on *:".concat(port));
 });
+module.exports = app;
