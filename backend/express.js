@@ -49,9 +49,11 @@ app.get("/articles", function (req, res) {
                     return [4 /*yield*/, client.connect()];
                 case 1:
                     _a.sent();
-                    results = client.query(query);
-                    return [4 /*yield*/, client.end()];
+                    return [4 /*yield*/, client.query(query)];
                 case 2:
+                    results = _a.sent();
+                    return [4 /*yield*/, client.end()];
+                case 3:
                     _a.sent();
                     res.send({
                         articles: results.rows
