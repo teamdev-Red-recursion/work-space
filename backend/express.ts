@@ -7,13 +7,12 @@ const port = process.env.EXPRESS_PORT || 3000
 app.get("/articles", async function(req, res) {
     const query = "SELECT * FROM test"
     await client.connect()
-    .then(() => client.query(query))
-    .then(results => {
-        res.send({
-            articles: results.rows
-        })
-    })
+    const results = client.query(query)
     await client.end()
+    res.send({
+        articles: results.rows
+    })
+    
 })
 
 //POST(insert) a article
