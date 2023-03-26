@@ -1,7 +1,7 @@
 const express = require('express')
 const pool = require('./pg_pool');
 const app = express();
-const port = process.env.EXPRESS_PORT || 3001
+const port = process.env.EXPRESS_PORT || 3005
 
 //GET(select) all articles
 app.get("/articles", async function(req, res) {
