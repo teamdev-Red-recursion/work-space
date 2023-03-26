@@ -156,20 +156,6 @@
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="swiper.js"></script>
-
-  <!-- API test(TODO削除) -->
-  <h1>Article List</h1>
-  <div id="articles"></div>
-
-  <script>
-    // APIからJSONを取得する
-    fetch('http://43.207.84.153/articles')
-      .then((response) => response.json())
-      .then((articleList) => {
-        const articleContainer = document.querySelector('#articles');
-        articleContainer.innerHTML = articleList[0];
-      })
-  </script>
 </body>
 
 </html>
