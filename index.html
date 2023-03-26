@@ -157,6 +157,21 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script src="swiper.js"></script>
 
+  <!-- API test(TODO削除)-->>
+  <h1>Article List</h1>
+  <div>
+    <ul id="articles"></ul>
+  </div>
+
+  <script>
+    // APIからJSONを取得する
+    fetch('http://localhost:3000/articles')
+      .then((response) => response.json())
+      .then((articleList) => {
+        const articleContainer = document.querySelector('#articles');
+        articleContainer.innerHTML = articleList;
+      })
+  </script>
 </body>
 
 </html>
