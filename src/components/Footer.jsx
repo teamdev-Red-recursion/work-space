@@ -1,4 +1,5 @@
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
 
 export const Footer = () => {
@@ -11,11 +12,11 @@ export const Footer = () => {
   return (
     <>
       {/* Twitter Button */}
-      <Container className="text-center">
-        <button onClick={handleClick} className="btn btn-primary">
-          Tweet
-        </button>
-      </Container>
+      <div className="d-flex justify-content-center">
+        <TwitterShareButton
+          options={{ text: '#recursion' }}
+        />
+      </div>
       {/* Twitter Button */}
 
       {/* Footer */}
