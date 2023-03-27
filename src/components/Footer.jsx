@@ -3,18 +3,12 @@ import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterH
 
 
 export const Footer = () => {
-  const shareUrl = `https://twitter.com/intent/tweet?text=HPをシェアします！&hashtags=Recursion&url=https://yourwebsite.com`;
-
-  const handleClick = () => {
-    window.open(shareUrl, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <>
       {/* Twitter Button */}
       <div className="d-flex justify-content-center">
         <TwitterShareButton
-          options={{ text: '#recursion' }}
+          options={{ text: '#HPをシェアします！' }}
         />
       </div>
       {/* Twitter Button */}
