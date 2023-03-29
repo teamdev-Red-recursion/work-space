@@ -21,7 +21,8 @@ app.get("/articles", async function(req, res) {
 
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
-    const insertQuery = "INSERT INTO test (id, name, zip, address, birth, sex) VALUES (1, 'yuya', '111-1111', 'tokyo', '2023-03-25', true)"
+    const body = req.body;
+    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${body.id}, ${body.name}, ${body.zip}, ${body.address}, ${body.birth}, ${body.sex})`
     const insertClient = await pool.connect()
     try {
         const insertRes = await insertClient.query(insertQuery)
