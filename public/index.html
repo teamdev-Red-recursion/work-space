@@ -56,6 +56,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
+    <!-- sample api-->
     <script>
       fetch('http://43.207.84.153/articles')
         .then((response) => response.json())
@@ -66,7 +67,7 @@
     </script>
 
     <script>
-      const data = {id:111,name:"aaaa",zip:"111-1111",address:"tokyo",birth:"2023-03-25T00:00:00.000Z",sex:true}
+      const data = {title:"title", text:"this is text", date:"2023-03-25T00:00:00.000Z"}
       fetch('http://43.207.84.153/articles', {
         method: 'POST',
         headers: {

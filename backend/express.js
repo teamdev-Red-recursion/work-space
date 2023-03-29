@@ -14,7 +14,7 @@ app.listen(port, () => {
 
 //GET(select) all articles
 app.get("/articles", async function(req, res) {
-    const selectQuery = "SELECT * FROM test"
+    const selectQuery = "SELECT * FROM articles"
     const selectClient = await pool.connect()
     try {
         const selectRes = await selectClient.query(selectQuery)
@@ -31,8 +31,8 @@ app.get("/articles", async function(req, res) {
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
     console.log(req.body)
-    console.log(`INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, "${req.body.name}", "${req.body.zip}", "${req.body.address}", "${req.body.birth}", ${req.body.sex})`)
-    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, '${req.body.name}', '${req.body.zip}', '${req.body.address}', '${req.body.birth}', ${req.body.sex})`
+    //const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, '${req.body.name}', '${req.body.zip}', '${req.body.address}', '${req.body.birth}', ${req.body.sex})`
+    const insertQuery = `INSERT INTO articles (title, text, date) VALUES ('${req.body.title}', '${req.body.text}',${req.body.date})`
     const insertClient = await pool.connect()
     try {
         const insertRes = await insertClient.query(insertQuery)
@@ -48,7 +48,7 @@ app.post("/articles", async function(req, res) {
 app.put("/articles", async function(req, res) {
     //TODO bodyで具体的な修正対象を送る→処理み実装
 
-    const updateQuery = "UPDATE test SET (id, name) = (999, 'change') WHERE id = 1"
+    const updateQuery = `UPDATE articles SET (text, date) = ('${req.body.text}',${req.body.date}) WHERE title = '${req.body.title}'`
     const updateClient = await pool.connect()
     try {
         const updateRes = await updateClient.query(updateQuery)
@@ -62,7 +62,7 @@ app.put("/articles", async function(req, res) {
 
 //DELETE(delete) a article
 app.delete("/articles", async function(req, res) {
-    const deleteQuery = "DELETE from test where id = 1"
+    const deleteQuery = `DELETE from articles where title = '${req.body.title}'`
     const deleteClient = await pool.connect()
     try {
         const deleteRes = await deleteClient.query(deleteQuery)
