@@ -69,7 +69,7 @@
           container.innerHTML = '';
 
           // JSONの各要素に対して
-              const name = new Text(json.name);                // 項目名
+              const name = new Text(json[0].name);                // 項目名
               // ラベルにチェックボックスとテキストを追加する
               const label = document.createElement('label'); 
               label.appendChild(name);
