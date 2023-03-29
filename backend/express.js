@@ -3,9 +3,8 @@ const pool = require('./pg_pool');
 const app = express();
 const port = process.env.EXPRESS_PORT || 3005
 
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 
 app.listen(port, () => {
     console.log(`listening on *:${port}`);

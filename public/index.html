@@ -70,7 +70,8 @@
       fetch('http://43.207.84.153/articles', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
       })
