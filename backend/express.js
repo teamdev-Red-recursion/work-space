@@ -32,7 +32,7 @@ app.get("/articles", async function(req, res) {
 app.post("/articles", async function(req, res) {
     console.log(req.body)
     //const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, '${req.body.name}', '${req.body.zip}', '${req.body.address}', '${req.body.birth}', ${req.body.sex})`
-    const insertQuery = `INSERT INTO articles (title, text, date) VALUES ('${req.body.title}', '${req.body.text}',${req.body.date})`
+    const insertQuery = `INSERT INTO articles (title, text, date) VALUES ('${req.body.title}', '${req.body.text}','${req.body.date}')`
     const insertClient = await pool.connect()
     try {
         await insertClient.query(insertQuery)
