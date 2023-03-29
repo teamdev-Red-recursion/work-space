@@ -60,10 +60,10 @@
         <ul id="container"></ul>
     </div>
     <script>
-      const article = [];
       fetch('http://localhost:3000/articles')
         .then((response) => response.json())
         .then((json) => {
+          console.log(json)
           const container = document.querySelector('#container');
           // コンテナの中身を全部消す
           container.innerHTML = '';
