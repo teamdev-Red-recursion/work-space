@@ -22,16 +22,16 @@ app.get("/articles", async function(req, res) {
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
     console.log(req.body)
-    const body = req.body;
-    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${body.id}, ${body.name}, ${body.zip}, ${body.address}, ${body.birth}, ${body.sex})`
-    const insertClient = await pool.connect()
-    try {
-        const insertRes = await insertClient.query(insertQuery)
-    } catch (err) {
-        console.log(err.stack)
-    } finally {
-        insertClient.release()
-    }
+    //const body = req.body;
+    //const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${body.id}, ${body.name}, ${body.zip}, ${body.address}, ${body.birth}, ${body.sex})`
+    //const insertClient = await pool.connect()
+    //try {
+    //    const insertRes = await insertClient.query(insertQuery)
+    //} catch (err) {
+    //    console.log(err.stack)
+    //} finally {
+    //    insertClient.release()
+    //}
     res.send("ok!")
 })
 
