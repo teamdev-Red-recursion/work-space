@@ -58,7 +58,7 @@
     <div id="test"></div>
     <script>
       let obj;
-      fetch('http://43.207.84.153/articles')
+      fetch('http://localhost:3000/articles')
         .then((response) => response.json())
         .then((json) => {
           console.log(json.articles[0].name)
