@@ -55,15 +55,17 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
+    <div id="test"></div>
     <script>
+      let obj;
       fetch('http://43.207.84.153/articles')
         .then((response) => response.json())
         .then((json) => {
           console.log(json)
-          console.log(json[0])
           }
         );
+      const div = document.getElementById("test")
+      div.innerHTML = json
       </script>
 </body>
 
