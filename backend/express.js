@@ -9,7 +9,7 @@ app.get("/articles", async function(req, res) {
     const selectClient = await pool.connect()
     try {
         const selectRes = await selectClient.query(selectQuery)
-        res.send({
+        res.json({ //res.sendから修正
             articles: selectRes.rows
         })
     } catch (err) {
