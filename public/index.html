@@ -61,11 +61,12 @@
       fetch('http://43.207.84.153/articles')
         .then((response) => response.json())
         .then((json) => {
+          obj = json
           console.log(json)
           }
         );
       const div = document.getElementById("test")
-      div.innerHTML = json
+      div.innerHTML = obj
       </script>
 </body>
 
