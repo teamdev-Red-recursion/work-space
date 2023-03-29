@@ -71,6 +71,7 @@
           // JSONの各要素に対して
               const name = new Text(json.name);                // 項目名
               // ラベルにチェックボックスとテキストを追加する
+              const label = document.createElement('label'); 
               label.appendChild(name);
               // TODOリストにリスト要素を追加する
               container.appendChild(label);
