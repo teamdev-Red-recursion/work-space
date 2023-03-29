@@ -21,16 +21,16 @@ app.get("/articles", async function(req, res) {
 
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
-    console.log(req)
-    //const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, ${req.body.name}, ${req.body.zip}, ${req.body.address}, ${req.body.birth}, ${req.body.sex})`
-    //const insertClient = await pool.connect()
-    //try {
-    //    const insertRes = await insertClient.query(insertQuery)
-    //} catch (err) {
-    //    console.log(err.stack)
-    //} finally {
-    //    insertClient.release()
-    //}
+    console.log(req.body)
+    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, ${req.body.name}, ${req.body.zip}, ${req.body.address}, ${req.body.birth}, ${req.body.sex})`
+    const insertClient = await pool.connect()
+    try {
+        const insertRes = await insertClient.query(insertQuery)
+    } catch (err) {
+        console.log(err.stack)
+    } finally {
+        insertClient.release()
+    }
     res.send("ok!")
 })
 
@@ -65,15 +65,8 @@ app.delete("/articles", async function(req, res) {
     res.send("ok!")
 })
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET, POST, PUT, PATCH, DELETE, OPTION"
-    );
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    next();
-});
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`listening on *:${port}`);
