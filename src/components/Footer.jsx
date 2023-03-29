@@ -1,21 +1,16 @@
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
 
 export const Footer = () => {
-  const shareUrl = `https://twitter.com/intent/tweet?text=HPをシェアします！&hashtags=Recursion&url=https://yourwebsite.com`;
-
-  const handleClick = () => {
-    window.open(shareUrl, '_blank', 'noopener,noreferrer');
-  };
-
   return (
     <>
       {/* Twitter Button */}
-      <Container className="text-center">
-        <button onClick={handleClick} className="btn btn-primary">
-          Tweet
-        </button>
-      </Container>
+      <div className="d-flex justify-content-center">
+        <TwitterShareButton
+          options={{ text: '#HPをシェアします！' }}
+        />
+      </div>
       {/* Twitter Button */}
 
       {/* Footer */}
