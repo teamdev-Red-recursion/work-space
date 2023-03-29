@@ -7,6 +7,12 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
+app.listen(port, () => {
+    console.log(`listening on *:${port}`);
+  })
+  
+  module.exports = app
+
 //GET(select) all articles
 app.get("/articles", async function(req, res) {
     const selectQuery = "SELECT * FROM test"
@@ -68,9 +74,3 @@ app.delete("/articles", async function(req, res) {
     }
     res.send("ok!")
 })
-
-app.listen(port, () => {
-  console.log(`listening on *:${port}`);
-})
-
-module.exports = app
