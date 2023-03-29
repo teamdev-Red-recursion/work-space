@@ -31,8 +31,8 @@ app.get("/articles", async function(req, res) {
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
     console.log(req.body)
-    console.log(`INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, ${req.body.name}, ${req.body.zip}, ${req.body.address}, ${req.body.birth}, ${req.body.sex})`)
-    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, ${req.body.name}, ${req.body.zip}, ${req.body.address}, ${req.body.birth}, ${req.body.sex})`
+    console.log(`INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, "${req.body.name}", "${req.body.zip}", "${req.body.address}", "${req.body.birth}", ${req.body.sex})`)
+    const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, "${req.body.name}", "${req.body.zip}", "${req.body.address}", "${req.body.birth}", ${req.body.sex})`
     const insertClient = await pool.connect()
     try {
         const insertRes = await insertClient.query(insertQuery)
