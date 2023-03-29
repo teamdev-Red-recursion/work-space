@@ -55,9 +55,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <!--api demo-->
 
-    <!--select
     <script>
       fetch('http://43.207.84.153/articles')
         .then((response) => response.json())
@@ -65,9 +63,8 @@
           console.log(json.articles[0].name)
           }
         );
-    </script>-->
+    </script>
 
-    <!--put
     <script>
       fetch('http://43.207.84.153/articles', {
         method: 'POST',
@@ -75,9 +72,10 @@
       })
         .then((response) => response.json())
         .then((json) => {
+          console.log(json)
           }
         );
-    </script> -->
+    </script>
 </body>
 
 </html>
