@@ -3,8 +3,9 @@ const pool = require('./pg_pool');
 const app = express();
 const port = process.env.EXPRESS_PORT || 3005
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 
 //GET(select) all articles
 app.get("/articles", async function(req, res) {

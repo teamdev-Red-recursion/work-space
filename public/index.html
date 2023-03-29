@@ -66,13 +66,14 @@
     </script>
 
     <script>
+      const data = {id:111,name:"api",zip:"111-1111",address:"tokyo",birth:"2023-03-25T00:00:00.000Z",sex:true}
       fetch('http://43.207.84.153/articles', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({id:111,name:"api",zip:"111-1111",address:"tokyo",birth:"2023-03-25T00:00:00.000Z",sex:true}),
+        body: JSON.stringify(data),
       })
         .then((response) => {
           console.log(response)
