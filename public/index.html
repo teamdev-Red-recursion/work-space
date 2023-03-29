@@ -70,9 +70,8 @@
         method: 'POST',
         body: JSON.stringify({"id":111,"name":"api","zip":"111-1111","address":"tokyo","birth":"2023-03-25T00:00:00.000Z","sex":true}),
       })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json)
+        .then((response) => {
+          console.log(response)
           }
         );
     </script>
