@@ -69,19 +69,13 @@
           container.innerHTML = '';
 
           // JSONの各要素に対して
-          for(const item of json) {
-              const li = document.createElement('li');          // リスト要素
-              const label = document.createElement('label');
-              const name = new Text(item.name);                // 項目名
-
+              const name = new Text(json.name);                // 項目名
               // ラベルにチェックボックスとテキストを追加する
               label.appendChild(name);
-              // リスト要素に先ほどのラベルを追加する
-              li.appendChild(label);
               // TODOリストにリスト要素を追加する
-              container.appendChild(li);
+              container.appendChild(label);
           }
-        });
+        );
       </script>
 </body>
 
