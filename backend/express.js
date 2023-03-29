@@ -35,7 +35,7 @@ app.post("/articles", async function(req, res) {
     const insertQuery = `INSERT INTO articles (title, text, date) VALUES ('${req.body.title}', '${req.body.text}',${req.body.date})`
     const insertClient = await pool.connect()
     try {
-        const insertRes = await insertClient.query(insertQuery)
+        await insertClient.query(insertQuery)
     } catch (err) {
         console.log(err.stack)
     } finally {
@@ -51,7 +51,7 @@ app.put("/articles", async function(req, res) {
     const updateQuery = `UPDATE articles SET (text, date) = ('${req.body.text}',${req.body.date}) WHERE title = '${req.body.title}'`
     const updateClient = await pool.connect()
     try {
-        const updateRes = await updateClient.query(updateQuery)
+        await updateClient.query(updateQuery)
     } catch (err) {
         console.log(err.stack)
     } finally {
@@ -65,7 +65,7 @@ app.delete("/articles", async function(req, res) {
     const deleteQuery = `DELETE from articles where title = '${req.body.title}'`
     const deleteClient = await pool.connect()
     try {
-        const deleteRes = await deleteClient.query(deleteQuery)
+        await deleteClient.query(deleteQuery)
     } catch (err) {
         console.log(err.stack)
     } finally {
