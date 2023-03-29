@@ -3,6 +3,9 @@ const pool = require('./pg_pool');
 const app = express();
 const port = process.env.EXPRESS_PORT || 3005
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+
 //GET(select) all articles
 app.get("/articles", async function(req, res) {
     const selectQuery = "SELECT * FROM test"
@@ -37,6 +40,7 @@ app.post("/articles", async function(req, res) {
 //PUT(update) a article
 app.put("/articles", async function(req, res) {
     //TODO bodyで具体的な修正対象を送る→処理み実装
+    console.log(req)
     console.log(req.body);
 
     const updateQuery = "UPDATE test SET (id, name) = (999, 'change') WHERE id = 1"
@@ -64,9 +68,6 @@ app.delete("/articles", async function(req, res) {
     }
     res.send("ok!")
 })
-
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
   console.log(`listening on *:${port}`);
