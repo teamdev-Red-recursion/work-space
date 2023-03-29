@@ -24,6 +24,7 @@ app.get("/articles", async function(req, res) {
 
 //POST(insert) a article
 app.post("/articles", async function(req, res) {
+    console.log(req)
     console.log(req.body)
     //const insertQuery = `INSERT INTO test (id, name, zip, address, birth, sex) VALUES (${req.body.id}, ${req.body.name}, ${req.body.zip}, ${req.body.address}, ${req.body.birth}, ${req.body.sex})`
     //const insertClient = await pool.connect()
@@ -40,8 +41,6 @@ app.post("/articles", async function(req, res) {
 //PUT(update) a article
 app.put("/articles", async function(req, res) {
     //TODO bodyで具体的な修正対象を送る→処理み実装
-    console.log(req)
-    console.log(req.body);
 
     const updateQuery = "UPDATE test SET (id, name) = (999, 'change') WHERE id = 1"
     const updateClient = await pool.connect()
