@@ -1,5 +1,5 @@
-import { Container, Row, Col, Card, Image } from "react-bootstrap";
-import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
+import { Container } from "react-bootstrap";
+import { TwitterShareButton } from 'react-twitter-embed';
 
 
 export const Footer = () => {
@@ -29,25 +29,3 @@ export const Footer = () => {
     </>
   );
 };
-
-
-{
-  /* html参照
-  ----------------------------------
-
-
-    <!-- Twitter Button -->
-  <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="HPをシェアします！"
-    data-hashtags="Recursion" data-show-count="false">Tweet</a>
-  <!-- Twitter Button -->
-
-  <!-- Footer -->
-  <footer class="text-center text-lg-start text-muted" style="background-color: #FFF5E9;">
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2023 Copyright: Recursion Team Red
-    </div>
-  </footer>
-  <!-- Footer -->
-
-  */
-}
