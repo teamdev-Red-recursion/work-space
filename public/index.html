@@ -30,6 +30,15 @@
   <!-- google-font -->
   <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Caveat&family=Satisfy&display=swap" rel="stylesheet">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFCHZCJHYT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-WFCHZCJHYT');
+  </script>
   <title>Coffee Recursion</title>
 </head>
 
@@ -46,6 +55,32 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <!-- sample api-->
+    <script>
+      fetch('http://43.207.84.153/articles')
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json.articles[0].title)
+          }
+        );
+    </script>
+
+    <script>
+      const data = {title:"title", text:"this is text", date:"2023-03-25T00:00:00.000Z"}
+      fetch('http://43.207.84.153/articles', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          console.log(response)
+          }
+        );
+    </script>
 </body>
 
 </html>
