@@ -23,15 +23,15 @@ export const CoffeeCardCreate = () => {
                 </Col>
                 <Col sm={8}>
                   <Card.Body className="text-center">
-                    <Form action="" method="get">
+                    <Form action="/articles" method="POST">
                       <Card.Text className="fs-3 pb-2 mt-0 text-center">
                         <div>
-                          <input type="text" id="Title" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
+                          <input type="text" id="title" name="text" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
                         </div>
                       </Card.Text>
                       <Card.Text className="text-explanation">
                         <div>
-                          <textarea id="contents" style={{ width: "95%" }} placeholder="Contents" maxlength="150" rows="5" required />
+                          <textarea id="text" name="text" style={{ width: "95%" }} placeholder="Contents" maxlength="150" rows="5" required />
                         </div>
                       </Card.Text>
                         <div>
@@ -48,4 +48,3 @@ export const CoffeeCardCreate = () => {
     </>
   );
 }
-
