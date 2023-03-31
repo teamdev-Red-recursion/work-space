@@ -24,11 +24,11 @@ export const CoffeeCardCreate = () => {
                 <Col sm={8}>
                   <Card.Body className="text-center">
                     <Form action="" method="get">
-                      <Card.Title className="fs-3 pb-2 mt-0 text-center">
+                      <Card.Text className="fs-3 pb-2 mt-0 text-center">
                         <div>
                           <input type="text" id="Title" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
                         </div>
-                      </Card.Title>
+                      </Card.Text>
                       <Card.Text className="text-explanation">
                         <div>
                           <textarea id="contents" style={{ width: "95%" }} placeholder="Contents" maxlength="150" rows="5" required />
