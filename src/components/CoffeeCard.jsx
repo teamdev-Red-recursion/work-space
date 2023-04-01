@@ -6,36 +6,19 @@ import notImg from "./image/images_by_card/not-image.png";
 import axios from "axios"; // 本番はaxiosを使用してfetching
 import { useEffect, useState } from "react";
 // axiosでdataが取得できないため、dummyのデータでfetchingチェック(error詳細は以下に記述)
-import { Articles } from "../dummydata";
+// import { Articles } from "../dummydata";
 
 // カード描画をDBデータを利用するように実装 #27
 export const CoffeeCard = () => {
   // ============== axiosでdata取得する場合 ==================
-  // const [articles, setArticles] = useState([]);
-
-  // useEffect(() => {
-  //   async function fetchArticles() {
-  //     try{
-  //       const response = await axios.get("http://43.207.84.153/articles");
-  //       console.log(response);
-  //       setArticles(response);
-  //     }catch(err){
-  //       console.error("Error fetching data: ", err);
-  //     }
-  //   }
-  //   fetchArticles();
-  // }, []);
-
-  // =================== テスト dummydata ===================
-
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     async function fetchArticles() {
       try {
-        // テストのため Articlesというダミーを使用(http://43.207.84.153/articlesで取得できるJsonの内容をハードコーディングしただけ)
-        const response = await Articles;
-        setArticles(response);
+        const response = await axios.get("/articles");
+        console.log("responseのチェック : " + response);
+        setArticles(response.data.articles);
       } catch (err) {
         console.error("Error fetching data: ", err);
       }
@@ -43,6 +26,22 @@ export const CoffeeCard = () => {
     fetchArticles();
   }, []);
 
+  // =================== テスト dummydata ===================
+
+  // const [articles, setArticles] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchArticles() {
+  //     try {
+  //       // テストのため Articlesというダミーを使用(http://43.207.84.153/articlesで取得できるJsonの内容をハードコーディングしただけ)
+  //       const response = await Articles;
+  //       setArticles(response);
+  //     } catch (err) {
+  //       console.error("Error fetching data: ", err);
+  //     }
+  //   }
+  //   fetchArticles();
+  // }, []);
 
   return (
     <Container>
@@ -127,9 +126,7 @@ export const CoffeeCard = () => {
                   {/* ここでAPIから画像のURLを取得し、適切な画像を表示するように変更する必要があります。img追加された場合に反映
                   img追加した場合, img取得して、画像がなければnotImgを表示させる予定 */}
                   <Image
-                    src={
-                      coffeeImg2 || notImg
-                    }
+                    src={coffeeImg2 || notImg}
                     className="scaled-coffee-image rounded"
                     alt="coffee画像"
                     width="4016"
@@ -140,7 +137,7 @@ export const CoffeeCard = () => {
                   <Card.Body className="text-center">
                     <Card.Title className="fs-3 pb-2 mt-0 d-flex justify-content-center">
                       {article.title}
-                      {index+1}
+                      {index + 1}
                     </Card.Title>
                     <Card.Text className="text-explanation">
                       {article.text}
