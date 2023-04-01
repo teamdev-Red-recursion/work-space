@@ -2,6 +2,25 @@ import { Container, Row, Col, Card, Image, Form } from "react-bootstrap";
 import coffeeImg1 from "../components/image/images_by_card/coffee-image1_by_card.jpg";
 
 export const CoffeeCardCreate = () => {
+  function submitForm() {
+    const data = {
+          title: document.getElementById("title").value,
+          text: document.getElementById("text").value,
+          date: new Date().toDateString()
+    };
+    fetch('http://43.207.84.153/articles', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log(response)
+        }
+    );
+  };
   return (
     <>
       <Container>
@@ -23,7 +42,7 @@ export const CoffeeCardCreate = () => {
                 </Col>
                 <Col sm={8}>
                   <Card.Body className="text-center">
-                    <Form action="/articles" method="POST">
+                    <Form>
                       <Card.Text className="fs-3 pb-2 mt-0 text-center">
                         <div>
                           <input type="text" id="title" name="text" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
@@ -35,7 +54,7 @@ export const CoffeeCardCreate = () => {
                         </div>
                       </Card.Text>
                         <div>
-                          <button type="submit" className="btn btn-primary">Create</button>
+                          <button onClick={submitForm} className="btn btn-primary">Create</button>
                         </div>
                     </Form>
                   </Card.Body>
