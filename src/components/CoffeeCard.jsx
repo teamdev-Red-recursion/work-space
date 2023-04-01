@@ -1,41 +1,48 @@
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
 import coffeeImg1 from "./image/images_by_card/coffee-image1_by_card.jpg";
+import coffeeImg2 from "./image/images_by_card/coffee-image2_by_card.jpg";
 import coffeeImg3 from "./image/images_by_card/coffee-image3_by_card.jpg";
-// import axios from "axios";
+import notImg from "./image/images_by_card/not-image.png";
+import axios from "axios"; // 本番はaxiosを使用してfetching
 import { useEffect, useState } from "react";
+// axiosでdataが取得できないため、dummyのデータでfetchingチェック(error詳細は以下に記述)
+import { Articles } from "../dummydata";
 
 // カード描画をDBデータを利用するように実装 #27
 export const CoffeeCard = () => {
-  const [articles, setArticles] = useState([]);
-
   // ============== axiosでdata取得する場合 ==================
+  // const [articles, setArticles] = useState([]);
+
   // useEffect(() => {
   //   async function fetchArticles() {
   //     try{
   //       const response = await axios.get("http://43.207.84.153/articles");
   //       console.log(response);
-  //       setArticles(response.data.articles);
+  //       setArticles(response);
   //     }catch(err){
   //       console.error("Error fetching data: ", err);
   //     }
   //   }
-
   //   fetchArticles();
   // }, []);
 
+  // =================== テスト dummydata ===================
 
-  // fetchでdata取得する場合
+  const [articles, setArticles] = useState([]);
+
   useEffect(() => {
-    fetch("http://43.207.84.153/articles")
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json.articles[0].title);
-        setArticles(json.articles);
-      })
-      .catch((error) => {
-        console.error("Error fetching data: ", error);
-      });
+    async function fetchArticles() {
+      try {
+        // テストのため Articlesというダミーを使用(http://43.207.84.153/articlesで取得できるJsonの内容をハードコーディングしただけ)
+        const response = await Articles;
+        setArticles(response);
+      } catch (err) {
+        console.error("Error fetching data: ", err);
+      }
+    }
+    fetchArticles();
   }, []);
+
 
   return (
     <Container>
@@ -43,7 +50,8 @@ export const CoffeeCard = () => {
         Welcome to Recursion Coffee
       </h1>
 
-      {/* ========================== 既存のハードコーディング ========================== */}
+      {/* ========================== 既存のカードリスト ハードコーディング ========================== */}
+      {/*  既存のCardはそのまま残そうと思います。(今後delete設定した際、全部消えたら寂しいかなと思って) */}
       <Row className="d-flex my-4">
         <Col xs={12} lg={6}>
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
@@ -109,16 +117,19 @@ export const CoffeeCard = () => {
         </Col>
       </Row>
 
-
-      {/* ========================== APIから取得した情報を表示 ========================== */}
+      {/* ========================== ここからが、APIから取得した情報を表示 ========================== */}
       <Row className="d-flex my-4">
         {articles.map((article, index) => (
           <Col key={index} xs={12} lg={6}>
             <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
               <Row className="mx-auto align-items-center">
                 <Col sm={4} className="coffee-img">
+                  {/* ここでAPIから画像のURLを取得し、適切な画像を表示するように変更する必要があります。img追加された場合に反映
+                  img追加した場合, img取得して、画像がなければnotImgを表示させる予定 */}
                   <Image
-                    src={coffeeImg1} // ここでAPIから画像のURLを取得し、適切な画像を表示するように変更する必要があります
+                    src={
+                      coffeeImg2 || notImg
+                    }
                     className="scaled-coffee-image rounded"
                     alt="coffee画像"
                     width="4016"
@@ -127,8 +138,9 @@ export const CoffeeCard = () => {
                 </Col>
                 <Col sm={8}>
                   <Card.Body className="text-center">
-                    <Card.Title className="fs-3 pb-2 mt-0 text-center">
+                    <Card.Title className="fs-3 pb-2 mt-0 d-flex justify-content-center">
                       {article.title}
+                      {index+1}
                     </Card.Title>
                     <Card.Text className="text-explanation">
                       {article.text}
@@ -145,7 +157,6 @@ export const CoffeeCard = () => {
           </Col>
         ))}
       </Row>
-
     </Container>
   );
 };
