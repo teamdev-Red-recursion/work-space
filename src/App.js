@@ -1,16 +1,19 @@
-import { HeaderNav } from "./components/Header";
-import { Slider } from "./components/Slider";
-import { Footer } from "./components/Footer";
-import { CoffeeCard } from "./components/CoffeeCard";
+import { Home } from './routes/home';
+import { CreateCard  } from './routes/create_card';
+import { Contact } from './routes/contact';
+import { NotMatch } from './routes/not_match';
+import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {
   return (
-    // 各コンポーネントの入り口
     <div className="App">
-      <HeaderNav />
-      <Slider />
-      <CoffeeCard />
-      <Footer />
+      {/*各pathにアクセスするとそのpathのelement(routes下にあるページコンポーネント)を表示する*/}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/create_card" element={<CreateCard />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotMatch />} />
+      </Routes>
     </div>
   );
 };

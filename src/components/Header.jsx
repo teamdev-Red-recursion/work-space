@@ -13,13 +13,18 @@ export const HeaderNav = () => {
         <Navbar.Collapse id="navbarSupportedContent">
           <Nav className="me-auto">
             <Nav.Item>
-              <Nav.Link href="#" active>
+              <Nav.Link href="/">
                 Home
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="#" disabled>
-                comming soon
+              <Nav.Link href="/create_card">
+                Create card
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/contact">
+                Contact
               </Nav.Link>
             </Nav.Item>
           </Nav>
