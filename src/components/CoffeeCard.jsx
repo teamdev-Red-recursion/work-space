@@ -3,10 +3,8 @@ import coffeeImg1 from "./image/images_by_card/coffee-image1_by_card.jpg";
 import coffeeImg2 from "./image/images_by_card/coffee-image2_by_card.jpg";
 import coffeeImg3 from "./image/images_by_card/coffee-image3_by_card.jpg";
 import notImg from "./image/images_by_card/not-image.png";
-import axios from "axios"; // 本番はaxiosを使用してfetching
+import axios from "axios";
 import { useEffect, useState } from "react";
-// axiosでdataが取得できないため、dummyのデータでfetchingチェック(error詳細は以下に記述)
-// import { Articles } from "../dummydata";
 
 // カード描画をDBデータを利用するように実装 #27
 export const CoffeeCard = () => {
@@ -26,31 +24,11 @@ export const CoffeeCard = () => {
     fetchArticles();
   }, []);
 
-  // =================== テスト dummydata ===================
-
-  // const [articles, setArticles] = useState([]);
-
-  // useEffect(() => {
-  //   async function fetchArticles() {
-  //     try {
-  //       // テストのため Articlesというダミーを使用(http://43.207.84.153/articlesで取得できるJsonの内容をハードコーディングしただけ)
-  //       const response = await Articles;
-  //       setArticles(response);
-  //     } catch (err) {
-  //       console.error("Error fetching data: ", err);
-  //     }
-  //   }
-  //   fetchArticles();
-  // }, []);
-
   return (
     <Container>
       <h1 className="cafe-name display-2 text-center my-3">
         Welcome to Recursion Coffee
       </h1>
-
-      {/* ========================== 既存のカードリスト ハードコーディング ========================== */}
-      {/*  既存のCardはそのまま残そうと思います。(今後delete設定した際、全部消えたら寂しいかなと思って) */}
       <Row className="d-flex my-4">
         <Col xs={12} lg={6}>
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
@@ -116,7 +94,7 @@ export const CoffeeCard = () => {
         </Col>
       </Row>
 
-      {/* ========================== ここからが、APIから取得した情報を表示 ========================== */}
+      {/* ここからが、APIから取得した情報を表示 */}
       <Row className="d-flex my-4">
         {articles.map((article, index) => (
           <Col key={index} xs={12} lg={6}>
