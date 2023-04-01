@@ -57,30 +57,30 @@
     -->
 
     <!-- sample api-->
-    <script>
-      fetch('http://43.207.84.153/articles')
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json.articles[0].title)
-          }
-        );
-    </script>
-
-    <script>
-      const data = {title:"title", text:"this is text", date:"2023-03-25T00:00:00.000Z"}
-      fetch('http://43.207.84.153/articles', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      })
-        .then((response) => {
-          console.log(response)
-          }
-        );
-    </script>
+    <!-- <script> -->
+    <!--   fetch('http://43.207.84.153/articles') -->
+    <!--     .then((response) => response.json()) -->
+    <!--     .then((json) => { -->
+    <!--       console.log(json.articles[0].title) -->
+    <!--       } -->
+    <!--     ); -->
+    <!-- </script> -->
+    <!--  -->
+    <!-- <script> -->
+    <!--   const data = {title:"title", text:"this is text", date:"2023-03-25T00:00:00.000Z"} -->
+    <!--   fetch('http://43.207.84.153/articles', { -->
+    <!--     method: 'POST', -->
+    <!--     headers: { -->
+    <!--       'Accept': 'application/json', -->
+    <!--       'Content-Type': 'application/json' -->
+    <!--     }, -->
+    <!--     body: JSON.stringify(data), -->
+    <!--   }) -->
+    <!--     .then((response) => { -->
+    <!--       console.log(response) -->
+    <!--       } -->
+    <!--     ); -->
+    <!-- </script> -->
 </body>
 
 </html>

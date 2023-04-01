@@ -45,7 +45,7 @@ export const CoffeeCardCreate = () => {
                     <Form>
                       <Card.Text className="fs-3 pb-2 mt-0 text-center">
                         <div>
-                          <input type="text" id="title" name="text" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
+                          <input type="text" id="title" name="title" style={{ width: "95%"}} placeholder="title" maxlength="20" required />
                         </div>
                       </Card.Text>
                       <Card.Text className="text-explanation">
