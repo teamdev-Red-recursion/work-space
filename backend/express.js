@@ -78,6 +78,8 @@ app.delete("/articles", async function(req, res) {
 //security test
 
 //認証+Tokenの発行
+//呼び出し例
+//curl -s -X POST -H 'Content-Type: application/json' -d '{"username":"hoge","password":"password"}' http://43.207.84.153/login
 app.post('/login', function (req, res) {
     //id, pwをbodyより取得
     var username = req.body.username;
@@ -96,6 +98,10 @@ app.post('/login', function (req, res) {
 
 })
 
+//tokenが必要なGET
+//呼び出し例
+//curl -X GET http://43.207.84.153/articles/sec -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxx"
+// xxxxxはlogin apiで取得したTOKEN
 app.get('/articles/sec', verifyToken, async function (req, res) {
     const selectQuery = "SELECT * FROM articles"
     const selectClient = await pool.connect()
@@ -124,20 +130,6 @@ app.post("/articles/sec", verifyToken, async function(req, res) {
     res.send("ok!")
 })
 
-app.get('/articles/sec', verifyToken, async function (req, res) {
-    const selectQuery = "SELECT * FROM articles"
-    const selectClient = await pool.connect()
-    try {
-        const selectRes = await selectClient.query(selectQuery)
-        res.send({
-            articles: selectRes.rows
-        })
-    } catch (err) {
-        console.log(err.stack)
-    } finally {
-        selectClient.release()
-    }
-})
 
 function verifyToken(req, res, next) {
     const authHeader = req.headers["authorization"];
