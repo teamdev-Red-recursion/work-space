@@ -2,7 +2,14 @@
 
 #### コーヒーサイト
 
-学習プラットフォームRecursionCSのメンバーでコーヒーショップのサイトを作成しました。
+
+学習プラットフォームRecursionCSのメンバー3人でコーヒーショップのサイトを作成しました。  
+
+
+<img width="1875" alt="スクリーンショット 2023-04-02 23 19 45" src="https://user-images.githubusercontent.com/83809409/229359388-5ed0067f-0d5c-41f0-a416-67c74db6db06.png">  
+
+<img width="944" alt="スクリーンショット 2023-04-02 23 20 09" src="https://user-images.githubusercontent.com/83809409/229359401-256ef6de-c123-4e5d-bf68-98e98634836c.png">  
+
 
 ### 技術スタック
 |        項目        |             技術           |
