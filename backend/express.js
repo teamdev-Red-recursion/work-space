@@ -121,7 +121,7 @@ function verifyToken(req, res, next) {
         //Bearerが正しく定義されているか
         if (authHeader.split(" ")[0] === "Bearer") {
             try {
-                const token = jwt.verify(authHeader.split(" ")[1], 'my_secret');
+                const token = jwt.verify(authHeader.split(" ")[1], 'fuga');
                 //tokenの内容に問題はないか？
                 //ここでは、usernameのマッチと有効期限をチェックしているが必要に応じて発行元、その他の確認を追加
                 //有効期限はverify()がやってくれるみたいだがいちおう・・・
