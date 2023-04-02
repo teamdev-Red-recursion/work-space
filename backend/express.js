@@ -45,38 +45,6 @@ app.post("/articles", async function(req, res) {
     res.send("ok!")
 })
 
-//PUT(update) a article
-app.put("/articles", async function(req, res) {
-    //TODO bodyで具体的な修正対象を送る→処理み実装
-
-    const updateQuery = `UPDATE articles SET (text, date) = ('${req.body.text}',${req.body.date}) WHERE title = '${req.body.title}'`
-    const updateClient = await pool.connect()
-    try {
-        await updateClient.query(updateQuery)
-    } catch (err) {
-        console.log(err.stack)
-    } finally {
-        updateClient.release()
-    }
-    res.send("ok!")
-})
-
-//DELETE(delete) a article
-app.delete("/articles", async function(req, res) {
-    const deleteQuery = `DELETE from articles where title = '${req.body.title}'`
-    const deleteClient = await pool.connect()
-    try {
-        await deleteClient.query(deleteQuery)
-    } catch (err) {
-        console.log(err.stack)
-    } finally {
-        deleteClient.release()
-    }
-    res.send("ok!")
-})
-
-//security test
-
 //認証+Tokenの発行
 //呼び出し例
 //curl -s -X POST -H 'Content-Type: application/json' -d '{"username":"hoge","password":"password"}' http://43.207.84.153/login
@@ -130,6 +98,35 @@ app.post("/articles/sec", verifyToken, async function(req, res) {
     res.send("ok!")
 })
 
+//PUT(update) a article
+app.put("/articles/sec", verifyToken, async function(req, res) {
+    //TODO bodyで具体的な修正対象を送る→処理み実装
+
+    const updateQuery = `UPDATE articles SET (text, date) = ('${req.body.text}',${req.body.date}) WHERE title = '${req.body.title}'`
+    const updateClient = await pool.connect()
+    try {
+        await updateClient.query(updateQuery)
+    } catch (err) {
+        console.log(err.stack)
+    } finally {
+        updateClient.release()
+    }
+    res.send("ok!")
+})
+
+//DELETE(delete) a article
+app.delete("/articles/sec", verifyToken, async function(req, res) {
+    const deleteQuery = `DELETE from articles where title = '${req.body.title}'`
+    const deleteClient = await pool.connect()
+    try {
+        await deleteClient.query(deleteQuery)
+    } catch (err) {
+        console.log(err.stack)
+    } finally {
+        deleteClient.release()
+    }
+    res.send("ok!")
+})
 
 function verifyToken(req, res, next) {
     const authHeader = req.headers["authorization"];
