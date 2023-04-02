@@ -81,6 +81,27 @@
       //     }
       //   );
     </script>
+    <script>
+      //TOKENを取得する処理を実装 TODO
+      const TOKEN = '【任意のJSON Web Token】';
+
+      fetch('/api/test'
+            {
+              method: 'GET',
+              headers: {
+                'Authorization': 'Bearer '+TOKEN,
+                'Content-Type': 'application/json',
+              }
+            }
+          ).then(async (response)=>{
+            console.log('response : ', response);
+            console.log('json : ', await response.json());
+          }).then((data)=>{
+            console.log('data : ', data);
+          }).catch((error) => {
+            console.error('error : ', error);
+          });
+    </script>
 </body>
 
 </html>
