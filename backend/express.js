@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const port = process.env.EXPRESS_PORT || 3005
 
 const corsOptions = {
-    origin: 'http://43.207.84.153:3000/', // 本番環境では、ここをフロントエンドのドメインに変更してください。
+    origin: 'http://43.207.84.153/', // 本番環境では、ここをフロントエンドのドメインに変更してください。
     optionsSuccessStatus: 200
   };
 
