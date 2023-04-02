@@ -1,9 +1,9 @@
 # work-space
 
-#### コーヒーサイト
+### コーヒーサイト
 
 
-学習プラットフォームRecursionCSのメンバー3人でコーヒーショップのサイトを作成しました。  
+#### 学習プラットフォームRecursionCSのメンバー3人でコーヒーショップのサイトを作成しました。  
 
 
 <img width="1875" alt="スクリーンショット 2023-04-02 23 19 45" src="https://user-images.githubusercontent.com/83809409/229359388-5ed0067f-0d5c-41f0-a416-67c74db6db06.png">  
