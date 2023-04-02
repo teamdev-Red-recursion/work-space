@@ -5,15 +5,22 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const port = process.env.EXPRESS_PORT || 3005
 
-const corsOptions = {
-    origin: 'http://localhost:3000/', // 本番環境では、ここをフロントエンドのドメインに変更してください。
-    optionsSuccessStatus: 200
-  };
+// const corsOptions = {
+//     origin: 'http://localhost:3000', // 本番環境では、ここをフロントエンドのドメインに変更してください。
+//     optionsSuccessStatus: 200
+//   };
 
+// const corsOptions = {
+//     origin: 'http://localhost:3000' || 'http://localhost:3001' , // 本番環境では、ここをフロントエンドのドメインに変更してください。
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//     credentials: true,
+//   };
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
-app.use(cors(corsOptions))
+app.use(cors())
+// app.use(cors(corsOptions))
 
 app.listen(port, () => {
     console.log(`listening on *:${port}`);
@@ -50,7 +57,7 @@ app.post("/articles", async function(req, res) {
     } finally {
         insertClient.release()
     }
-    res.send("ok!")
+    res.send("Post(Insert) ok!")
 })
 
 //認証+Tokenの発行
@@ -119,7 +126,7 @@ app.put("/articles/sec", verifyToken, async function(req, res) {
     } finally {
         updateClient.release()
     }
-    res.send("ok!")
+    res.send("Put(Update) ok!")
 })
 
 //DELETE(delete) a article
@@ -133,7 +140,7 @@ app.delete("/articles/sec", verifyToken, async function(req, res) {
     } finally {
         deleteClient.release()
     }
-    res.send("ok!")
+    res.send("Delete ok!")
 })
 
 function verifyToken(req, res, next) {
