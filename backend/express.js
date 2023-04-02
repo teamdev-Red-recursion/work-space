@@ -99,7 +99,7 @@ app.post('/login', function (req, res) {
 
 })
 
-app.get('/sec/articles', verifyToken, async function (req, res) {
+app.get('/articles/sec', verifyToken, async function (req, res) {
     const selectQuery = "SELECT * FROM articles"
     const selectClient = await pool.connect()
     try {
