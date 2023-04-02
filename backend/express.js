@@ -5,22 +5,9 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const port = process.env.EXPRESS_PORT || 3005
 
-// const corsOptions = {
-//     origin: 'http://localhost:3000', // 本番環境では、ここをフロントエンドのドメインに変更してください。
-//     optionsSuccessStatus: 200
-//   };
-
-// const corsOptions = {
-//     origin: 'http://localhost:3000' || 'http://localhost:3001' , // 本番環境では、ここをフロントエンドのドメインに変更してください。
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-//     credentials: true,
-//   };
-
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors())
-// app.use(cors(corsOptions))
 
 app.listen(port, () => {
     console.log(`listening on *:${port}`);
