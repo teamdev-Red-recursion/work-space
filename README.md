@@ -2,8 +2,28 @@
 
 #### コーヒーサイト
 
-学習プラットフォームRecursionCSのメンバーでコーヒーショップのサイトを作成しています。
+学習プラットフォームRecursionCSのメンバーでコーヒーショップのサイトを作成しました。
 
+### 技術スタック
+|        項目        |             技術           |
+| ----------------  |  -----------------------  |
+|    フロントエンド      |     JavaScript            |
+|     バックエンド      |      Node.js              |
+|     フレームワーク    | React, Bootstrap, Express |
+|      インフラ       |       AWS LightSail        |
+|     Database      |         PostgreSQL        |
+
+
+### バックエンド詳細
+|        項目       |                           内容                             |
+| ---------------- |  --------------------------------------------------------  |
+|   AWS LightSail  |            インスタンス1台・PostgreSQLを立てています               |
+|     Nginx        |           HTTPサーバーとして設置しています                        |
+|      Express     |              APIサーバーとして立てています                       |
+|       API        | SELECT, DELETE, INSERT, UPDATE, JWT認証のためのログインAPIを実装 |
+
+  
+  
 
 # Getting Started with Create React App
 
