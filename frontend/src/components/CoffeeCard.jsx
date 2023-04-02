@@ -1,12 +1,9 @@
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
-// import coffeeImg1 from "./image/images_by_card/coffee-image1_by_card.jpg";
-// import coffeeImg2 from "./image/images_by_card/coffee-image2_by_card.jpg";
-// import coffeeImg3 from "./image/images_by_card/coffee-image3_by_card.jpg";
-// import notImg from "./image/images_by_card/not-image.png";
+import coffeeImg4 from "./image/images_by_card/coffee-image6_by_card.jpg";
+import coffeeImg7 from "./image/images_by_card/coffee-image7_by_card.jpg";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { RandomImage } from "./RandomImg";
-
 
 export const CoffeeCard = () => {
   const [articles, setArticles] = useState([]);
@@ -24,23 +21,22 @@ export const CoffeeCard = () => {
     fetchArticles();
   }, []);
 
-
   return (
     <Container>
       <h1 className="cafe-name display-2 text-center my-3">
         Welcome to Recursion Coffee
       </h1>
+      {/* 上記2枚のカードはDatabaseに要素がなくても表示したいため、ハードコーディングで記述 */}
       <Row className="d-flex my-4">
         <Col xs={12} lg={6}>
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
             <Row className="mx-auto align-items-center">
               <Col sm={4} className="coffee-img">
-                {/* <Image
-                  src={coffeeImg1}
+                <Image
+                  src={coffeeImg4}
                   className="scaled-coffee-image rounded"
-                  alt="coffee画像"
-                /> */}
-                <RandomImage />
+                  alt="coffee画像Random"
+                />
               </Col>
               <Col sm={8}>
                 <Card.Body className="text-center">
@@ -65,12 +61,11 @@ export const CoffeeCard = () => {
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
             <Row className="mx-auto align-items-center">
               <Col sm={4} className="coffee-img">
-                {/* <Image
-                  src={coffeeImg3}
+                <Image
+                  src={coffeeImg7}
                   className="scaled-coffee-image rounded"
-                  alt="coffee画像"
-                /> */}
-                <RandomImage />
+                  alt="coffee画像Random"
+                />
               </Col>
               <Col sm={8}>
                 <Card.Body className="text-center">
@@ -93,25 +88,19 @@ export const CoffeeCard = () => {
         </Col>
       </Row>
 
-      {/* ここからが、APIから取得した情報を表示 */}
+      {/* ここから、APIから取得した情報を表示 */}
       <Row className="d-flex my-4">
         {articles.map((article, index) => (
           <Col key={index} xs={12} lg={6}>
             <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
               <Row className="mx-auto align-items-center">
                 <Col sm={4} className="coffee-img">
-                  {/* <Image
-                    src={coffeeImg2 || notImg}
-                    className="scaled-coffee-image rounded"
-                    alt="coffee画像"
-                  /> */}
                   <RandomImage />
                 </Col>
                 <Col sm={8}>
                   <Card.Body className="text-center">
                     <Card.Title className="fs-3 pb-2 mt-0 d-flex justify-content-center">
                       {article.title}
-                      {index + 1}
                     </Card.Title>
                     <Card.Text className="text-explanation">
                       {article.text}
@@ -128,6 +117,37 @@ export const CoffeeCard = () => {
           </Col>
         ))}
       </Row>
+
+
+      {/* Before Code */}
+      {/* <Row className="d-flex my-4">
+        {articles.map((article, index) => (
+          <Col key={index} xs={12} lg={6}>
+            <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
+              <Row className="mx-auto align-items-center">
+                <Col sm={4} className="coffee-img">
+                  <RandomImage />
+                </Col>
+                <Col sm={8}>
+                  <Card.Body className="text-center">
+                    <Card.Title className="fs-3 pb-2 mt-0 d-flex justify-content-center">
+                      {article.title}
+                    </Card.Title>
+                    <Card.Text className="text-explanation">
+                      {article.text}
+                    </Card.Text>
+                    <Card.Text className="text-center pt-2">
+                      <small className="text-muted">
+                        {new Date(article.date).toLocaleDateString()}
+                      </small>
+                    </Card.Text>
+                  </Card.Body>
+                </Col>
+              </Row>
+            </Card>
+          </Col>
+        ))}
+      </Row> */}
     </Container>
   );
 };
