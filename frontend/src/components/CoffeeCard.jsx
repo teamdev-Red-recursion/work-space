@@ -1,21 +1,21 @@
 import { Container, Row, Col, Card, Image } from "react-bootstrap";
-import coffeeImg1 from "./image/images_by_card/coffee-image1_by_card.jpg";
-import coffeeImg2 from "./image/images_by_card/coffee-image2_by_card.jpg";
-import coffeeImg3 from "./image/images_by_card/coffee-image3_by_card.jpg";
-import notImg from "./image/images_by_card/not-image.png";
+// import coffeeImg1 from "./image/images_by_card/coffee-image1_by_card.jpg";
+// import coffeeImg2 from "./image/images_by_card/coffee-image2_by_card.jpg";
+// import coffeeImg3 from "./image/images_by_card/coffee-image3_by_card.jpg";
+// import notImg from "./image/images_by_card/not-image.png";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { RandomImage } from "./RandomImg";
 
-// カード描画をDBデータを利用するように実装 #27
+
 export const CoffeeCard = () => {
-  // ============== axiosでdata取得する場合 ==================
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     async function fetchArticles() {
       try {
         const response = await axios.get("/articles");
-        console.log("responseのチェック : " + response);
+        // console.log("responseのチェック : " + response);
         setArticles(response.data.articles);
       } catch (err) {
         console.error("Error fetching data: ", err);
@@ -23,6 +23,7 @@ export const CoffeeCard = () => {
     }
     fetchArticles();
   }, []);
+
 
   return (
     <Container>
@@ -34,13 +35,12 @@ export const CoffeeCard = () => {
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
             <Row className="mx-auto align-items-center">
               <Col sm={4} className="coffee-img">
-                <Image
+                {/* <Image
                   src={coffeeImg1}
                   className="scaled-coffee-image rounded"
                   alt="coffee画像"
-                  width="4016"
-                  height="6016"
-                />
+                /> */}
+                <RandomImage />
               </Col>
               <Col sm={8}>
                 <Card.Body className="text-center">
@@ -65,13 +65,12 @@ export const CoffeeCard = () => {
           <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
             <Row className="mx-auto align-items-center">
               <Col sm={4} className="coffee-img">
-                <Image
+                {/* <Image
                   src={coffeeImg3}
                   className="scaled-coffee-image rounded"
                   alt="coffee画像"
-                  width="4016"
-                  height="6016"
-                />
+                /> */}
+                <RandomImage />
               </Col>
               <Col sm={8}>
                 <Card.Body className="text-center">
@@ -101,15 +100,12 @@ export const CoffeeCard = () => {
             <Card className="d-flex flex-column justify-content-center shadow bg-body rounded p-2 mb-3">
               <Row className="mx-auto align-items-center">
                 <Col sm={4} className="coffee-img">
-                  {/* ここでAPIから画像のURLを取得し、適切な画像を表示するように変更する必要があります。img追加された場合に反映
-                  img追加した場合, img取得して、画像がなければnotImgを表示させる予定 */}
-                  <Image
+                  {/* <Image
                     src={coffeeImg2 || notImg}
                     className="scaled-coffee-image rounded"
                     alt="coffee画像"
-                    width="4016"
-                    height="6016"
-                  />
+                  /> */}
+                  <RandomImage />
                 </Col>
                 <Col sm={8}>
                   <Card.Body className="text-center">
