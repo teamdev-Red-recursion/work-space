@@ -1,6 +1,7 @@
 const express = require('express')
 const pool = require('./pg_pool');
 const app = express();
+const jwt = require('jsonwebtoken');
 const port = process.env.EXPRESS_PORT || 3005
 
 app.use(express.urlencoded({extended: true}))
@@ -73,3 +74,73 @@ app.delete("/articles", async function(req, res) {
     }
     res.send("ok!")
 })
+
+//test security
+
+//認証+Tokenの発行
+app.post('/login', function (req, res) {
+
+    //ID,PW取得
+    var username = req.body.username;
+    var password = req.body.password;
+
+    //認証
+    if (username === "hoge" && password === "password") {
+        //token生成（フォマットは適当だが、有効期限を設定）
+        const token = jwt.sign({ username: username }, 'fuga', { expiresIn: '1h' });
+        res.json({
+            token: token
+        });
+    } else {
+        res.json({
+            error: "auth error"
+        });
+    }
+
+})
+
+app.get('/sec/articles', verifyToken, async function (req, res) {
+    const selectQuery = "SELECT * FROM articles"
+    const selectClient = await pool.connect()
+    try {
+        const selectRes = await selectClient.query(selectQuery)
+        res.send({
+            articles: selectRes.rows
+        })
+    } catch (err) {
+        console.log(err.stack)
+    } finally {
+        selectClient.release()
+    }
+})
+
+function verifyToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    //HeaderにAuthorizationが定義されているか
+    if (authHeader !== undefined) {
+        //Bearerが正しく定義されているか
+        if (authHeader.split(" ")[0] === "Bearer") {
+            try {
+                const token = jwt.verify(authHeader.split(" ")[1], 'my_secret');
+                //tokenの内容に問題はないか？
+                //ここでは、usernameのマッチと有効期限をチェックしているが必要に応じて発行元、その他の確認を追加
+                //有効期限はverify()がやってくれるみたいだがいちおう・・・
+                if (token.username === "hoge" && Date.now() < token.exp * 1000) {
+                    console.log(token);
+                    //問題がないので次へ
+                    next();
+                } else {
+                    res.json({ error: "auth error" })
+                }
+            } catch (e) {
+                //tokenエラー
+                console.log(e.message);
+                res.json({ error: e.message })
+            }
+        } else {
+            res.json({ error: "header format error" });
+        }
+    } else {
+        res.json({ error: "header error" });
+    }
+}
