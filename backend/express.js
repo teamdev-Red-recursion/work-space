@@ -1,15 +1,23 @@
-const express = require('express')
+const express = require('express');
+const cors = require("cors");
 const pool = require('./pg_pool');
 const app = express();
 const port = process.env.EXPRESS_PORT || 3005
 
+const corsOptions = {
+    origin: 'http://localhost:3000/', // 本番環境では、ここをフロントエンドのドメインに変更してください。
+    optionsSuccessStatus: 200
+  };
+
+
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+app.use(cors(corsOptions))
 
 app.listen(port, () => {
     console.log(`listening on *:${port}`);
   })
-  
+
   module.exports = app
 
 //GET(select) all articles
